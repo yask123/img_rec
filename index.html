@@ -35,7 +35,7 @@
        for (var i in result) {
         keywords.push(result[i].name );
         console.log(result[i].name + '\t' + result[i].value);
-        output_box.innerHTML += '<div>' +'<span>' +  result[i].name + '</span>' + '<span>' + result[i].value + '</span>' + '</div>'
+        output_box.innerHTML += '<tr>' +'<td>' +  result[i].name + '</td>' + '<td>' + result[i].value + '</td>' + '</tr>'
         }
 
         var k = 0;
@@ -85,12 +85,24 @@
   <div class="text-center">
 
     <h3>Output</h3>
+    <!--
     <div  id="output">
       <div>
         <span>Concepts</span>
         <span> Prediction rating </span>
       </div>
-
+    -->
+      <table class="table"> <caption>Output</caption>
+        <thead> 
+          <tr> 
+            <th>Concepts</th> <th>Prediction rating</th> 
+          </tr> </thead>
+        <tbody id="output"> 
+        <tr> 
+          
+          
+        </tr> 
+        </tbody> </table>
     </div>
 
       <button  class="btn btn-success"
