@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+<style type="text/css">
+  span {
+    padding: 10px;
+  }
+</style>
+<script type="text/javascript" src="https://sdk.clarifai.com/js/clarifai-latest.js"></script>
+<script>
+  var app = new Clarifai.App(
+    'DCiGjzZCs59rn6Zdtaz-TursZXznoqx6G9svMxjV',
+    'a6kM9MflZy1onfVvqUan3mhTwUE-TBWBahfa443s'
+  );
+  var keywords_string = '';
+  function get_concepts(){
+      var img_url = document.querySelector('#url_box').value;
+      var output_box = document.querySelector('#output');
+
+      var keywords = [];
+
+      app.models.predict(Clarifai.GENERAL_MODEL, img_url).then(
+      function(response) {
+        var result = response.outputs[0].data.concepts;
+       for (var i in result) {
+        keywords.push(result[i].name );
+        console.log(result[i].name + '\t' + result[i].value);
+        output_box.innerHTML += '<div>' +'<span>' +  result[i].name + '</span>' + '<span>' + result[i].value + '</span>' + '</div>'
+        }
+
+        var i = 0;
+        
+        while (i < 5){
+              try {
+                  keywords_string += keywords[i] + '+';
+                  i += 1;
+              }
+              catch (e) {
+                break;
+              }
+           
+        }
+        console.log(keywords_string);
+
+      },
+      function(err) {
+        console.error(err);
+      }
+      );
+      
+  }
+
+  function result(){
+    var URL = 'https://www.google.co.in/search?site=&tbm=isch&source=hp&biw=1280&bih=703&q='+keywords_string+'&gs_l=img.12...0.0.0.12574.0.0.0.0.0.0.0.0..0.0....0...1ac..64.img..0.0.0.OUJZujCUx3A&gws_rd=cr&ei=vIftWNf1OsXVvgSe_ZmIDA'
+    window.location.href = URL;
+  }
+
+</script>
+Image URL : 
+<input id="url_box" type="text"/>
+<button onclick="get_concepts()">Start</button>
+
+<h3>Output</h3>
+<div id = "output">
+  <div>
+    <span>Concepts</span>
+    <span> Prediction rating </span>
+  </div>
+
+</div>
+
+<button onclick="result()">Result</button>
+
+
+</body>
+</html>
