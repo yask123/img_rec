@@ -4,6 +4,7 @@
 <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <title></title>
 </head>
 <body>
@@ -64,21 +65,25 @@
   }
 
 </script>
-Image URL : 
-<input id="url_box" type="text"/>
-<button onclick="get_concepts()">Start</button>
+<div class="container">
 
-<h3>Output</h3>
-<div id = "output">
-  <div>
-    <span>Concepts</span>
-    <span> Prediction rating </span>
+  <h1> Image Recommendation For Places </h1>
+  Image URL : 
+  <input id="url_box" type="text"/>
+  <button onclick="get_concepts()">Start</button>
+
+  <h3>Output</h3>
+  <div id = "output">
+    <div>
+      <span>Concepts</span>
+      <span> Prediction rating </span>
+    </div>
+
   </div>
 
+  <button onclick="result()">Result</button>
+
 </div>
-
-<button onclick="result()">Result</button>
-
 
 </body>
 </html>
