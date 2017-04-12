@@ -30,6 +30,7 @@
 
       app.models.predict(Clarifai.GENERAL_MODEL, img_url).then(
       function(response) {
+        console.log(response);
         var result = response.outputs[0].data.concepts;
        for (var i in result) {
         keywords.push(result[i].name );
@@ -37,12 +38,12 @@
         output_box.innerHTML += '<div>' +'<span>' +  result[i].name + '</span>' + '<span>' + result[i].value + '</span>' + '</div>'
         }
 
-        var i = 0;
+        var k = 0;
         
-        while (i < 5){
+        while (k < 5){
               try {
                   keywords_string += keywords[i] + '+';
-                  i += 1;
+                  k += 1;
               }
               catch (e) {
                 break;
@@ -67,7 +68,7 @@
 </script>
 <div class="container">
 
-  <h1> Image Recommendation For Places </h1>
+  <h4> Image Recommendation For Places </h4>
   <!--
   Image URL : 
   <input class="form-control" id="url_box" type="text"/>
@@ -81,17 +82,20 @@
     <button class="btn btn-primary btn-lg text-center" onclick="get_concepts()">Build Concepts</button>
 
   </div>
-  <h3>Output</h3>
-  <div id = "output text-center">
-    <div>
-      <span>Concepts</span>
-      <span> Prediction rating </span>
+  <div class="text-center">
+
+    <h3>Output</h3>
+    <div  id="output">
+      <div>
+        <span>Concepts</span>
+        <span> Prediction rating </span>
+      </div>
+
     </div>
 
-  </div>
-
-  <button  class="btn btn-success"
-  window.location.reload(true); onclick="result()">Result</button>
+      <button  class="btn btn-success"
+      window.location.reload(true); onclick="result()">Result</button>
+    </div>
 
 </div>
 
